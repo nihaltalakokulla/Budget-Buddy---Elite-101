@@ -5,3 +5,4 @@ Name: Nihal Talakokulla
 ##Team
 - Nihal (building Budgetbuddy)
 - Add Nihal to the team section
+-Nihal: first commit from the command line.
