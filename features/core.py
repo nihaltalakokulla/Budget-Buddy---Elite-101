@@ -17,6 +17,14 @@ def add_purchase(purchases, name, amount):
 
 
 def calculate_total(purchases):
+    """Calculate and return the total cost of all purchases
+
+    Args:
+       purchases (list): A list of dictionaries containing purchase names and amounts
+    
+    Returns:
+        float: The total spending rounded to 2 decimal places"""
+    
     return round(
         sum(purchase["amount"] for purchase in purchases), 2
     )
