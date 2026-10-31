@@ -11,3 +11,7 @@ class TestReports(unittest.TestCase):
     def test_average_of_multiple_balances(self):
         data = {"history": [100, 200, 300]}
         self.assertEqual(reports.average_balance(data), 200.0)
+
+    def test_single_balance_returns_same_value(self):
+        data = {"history": [125.5]}
+        self.assertEqual(reports.average_balance(data), 125.5)
