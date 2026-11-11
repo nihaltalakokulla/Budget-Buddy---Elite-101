@@ -1,4 +1,3 @@
-
 def add_purchase(purchases, name, amount):
     name = name.strip()
 
@@ -17,17 +16,7 @@ def add_purchase(purchases, name, amount):
 
 
 def calculate_total(purchases):
-    """Calculate and return the total cost of all purchases
-
-    Args:
-       purchases (list): A list of dictionaries containing purchase names and amounts
-    
-    Returns:
-        float: The total spending rounded to 2 decimal places"""
-    
-    return round(
-        sum(purchase["amount"] for purchase in purchases), 2
-    )
+    return round(sum(purchase["amount"] for purchase in purchases), 2)
 
 
 def delete_purchase(purchases, index):
@@ -50,3 +39,55 @@ def display_purchases(purchases):
 
     print("----------------------")
     print(f"Total: ${calculate_total(purchases):.2f}")
+
+
+def filter_by_category(purchases, category):
+    category = category.strip().lower()
+
+    return [
+        purchase for purchase in purchases
+        if purchase.get("category", "").lower() == category
+    ]
+
+
+def search_purchases(purchases, search_term):
+    search_term = search_term.strip().lower()
+
+    return [
+        purchase for purchase in purchases
+        if search_term in purchase["name"].lower()
+    ]
+
+
+def category_breakdown(purchases):
+    breakdown = {}
+
+    for purchase in purchases:
+        category = purchase.get("category", "Uncategorized")
+        breakdown[category] = breakdown.get(category, 0) + purchase["amount"]
+
+    return {
+        category: round(amount, 2)
+        for category, amount in breakdown.items()
+    }
+
+
+def last_purchase(purchases):
+    return purchases[-1] if purchases else None
+
+
+def spending_summary(purchases):
+    if not purchases:
+        return {
+            "total": 0.0,
+            "count": 0,
+            "average": 0.0
+        }
+
+    total = calculate_total(purchases)
+
+    return {
+        "total": total,
+        "count": len(purchases),
+        "average": round(total / len(purchases), 2)
+    }
